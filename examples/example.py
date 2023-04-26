@@ -1,15 +1,7 @@
 import hafez
 
+
 def main():
-    """
-
-    {"id": 1,
-    "poem": [],
-    "meaning": "",
-    "vocal": "https://..."}
-
-    :return:
-    """
 
     # it returns the total number of poems
     # returns: int
@@ -21,7 +13,7 @@ def main():
 
     # get omen (fal)
     # returns: dict
-    omen = hafez.omen() # same as: hafez.fal()
+    omen = hafez.omen()  # same as: hafez.fal()
 
     # search within the verses of poems
     # returns: list[dict]

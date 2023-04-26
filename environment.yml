@@ -5,6 +5,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
+  - pandas
   - pip
   - pip:
-      - timeutils
+      - sqlite3
