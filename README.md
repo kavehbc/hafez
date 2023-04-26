@@ -9,6 +9,28 @@ Poems can be accessed as following:
 - By searching a query,
 - Random poem (known as Omen or `Fal` in Persian)
 
+## Installation
+
+This package can be installed:
+
+- using `pip`:
+
+```bash
+pip install hafez
+```
+
+- using `Makefile` on a cloned/forked repo:
+
+```bash
+make install
+```
+
+- using `pip` on a cloned/forked repo:
+
+```bash
+pip install -e . --upgrade --upgrade-strategy only-if-needed
+```
+
 ## Methods
 
 - `hafez.total_poems()` -> `int`
