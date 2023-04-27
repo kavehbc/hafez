@@ -8,3 +8,6 @@ push:
 
 install:
 	pip install -e . --upgrade --upgrade-strategy only-if-needed
+
+module:
+	pip install dist/hafez-0.1.2.tar.gz
