@@ -2,9 +2,10 @@ import pandas as pd
 import sqlite3
 from sqlite3 import Connection
 import pathlib
+import os
 
-# URI_SQLITE_DB = str(pathlib.Path(__file__).parents[1].resolve()) + "/data/hafez.db"
-URI_SQLITE_DB = "hafez.db"
+
+URI_SQLITE_DB = str(pathlib.Path(os.path.abspath(os.path.dirname(__file__))).parents[0].resolve()) + "/data/hafez.db"
 
 
 def get_data(id: int = None):
