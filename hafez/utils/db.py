@@ -3,7 +3,8 @@ import sqlite3
 from sqlite3 import Connection
 import pathlib
 
-URI_SQLITE_DB = str(pathlib.Path(__file__).parents[1].resolve()) + "/data/hafez.db"
+# URI_SQLITE_DB = str(pathlib.Path(__file__).parents[1].resolve()) + "/data/hafez.db"
+URI_SQLITE_DB = "hafez.db"
 
 
 def get_data(id: int = None):
