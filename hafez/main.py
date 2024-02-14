@@ -6,7 +6,7 @@ from hafez.utils.db import get_data, search_data
 from hafez.utils.formating import df_to_dict
 
 URI_MP3_FOLDER = str(
-        pathlib.Path(os.path.abspath(os.path.dirname(__file__))).parents[0].resolve()) + "/data/audio"
+        pathlib.Path(os.path.abspath(os.path.dirname(__file__))).resolve()) + "/data/audio"
 
 
 def download_all_audio(force=False) -> int:
@@ -25,8 +25,8 @@ def download_audio(poem=1) -> int:
     :param poem: number of poem. Defaults to 1
     :return: 1
     """
-    # base_url = "https://de.loveziba.com/2019/10/"
-    base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/aduio/"
+    # base_url = "https://de.loveziba.com/2019/10"
+    base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/audio/"
 
     mp3_filename = f"{poem:04d}.mp3"
     url = base_url + mp3_filename
@@ -53,6 +53,7 @@ def get_audio(poem=1, download=True) -> str:
 
     if not os.path.exists(path) and download:
         download_audio(poem=poem)
+        print("file downloaded")
 
     return os.path.abspath(path)
 
