@@ -53,7 +53,6 @@ def get_audio(poem=1, download=True) -> str:
 
     if not os.path.exists(path) and download:
         download_audio(poem=poem)
-        print("file downloaded")
 
     return os.path.abspath(path)
 
