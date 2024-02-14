@@ -1,6 +1,64 @@
 import random
+import requests
+import os
+import pathlib
 from hafez.utils.db import get_data, search_data
 from hafez.utils.formating import df_to_dict
+
+URI_MP3_FOLDER = str(
+        pathlib.Path(os.path.abspath(os.path.dirname(__file__))).parents[0].resolve()) + "/data/audio"
+
+
+def download_all_audio() -> int:
+    """
+    This function downloads the MP3 files and saves them locally.
+    :return: total number of files saved
+    """
+    counter = 0
+    for poem_number in range(1, 496):
+        download_audio(poem=poem_number)
+        counter += 1
+
+    return counter
+
+
+def download_audio(poem=1) -> int:
+    """
+    This function downloads a MP3 file and saves it locally.
+    :param poem: number of poem. Defaults to 1
+    :return: 1
+    """
+    # base_url = "https://de.loveziba.com/2019/10/"
+    # base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/aduio/"
+    base_url = "https://raw.githubusercontent.com/kavehbc/divan-hafez/master/mp3/"
+
+    mp3_filename = f"{poem:04d}.mp3"
+    url = base_url + mp3_filename
+
+    with requests.Session() as req:
+        mp3_path = f'{URI_MP3_FOLDER}/{mp3_filename}'
+        download = req.get(url)
+        if download.status_code == 200:
+            with open(mp3_path, 'wb') as f:
+                f.write(download.content)
+
+    return 1
+
+
+def get_audio(poem=1, download=True) -> str:
+    """
+    This function retrieve MP3 file of a poem.
+    :param poem: poem number. Defaults to 1
+    :param download: Download if the file does not exist. Defaults to True
+    :return: MP3 file absolute path
+    """
+    mp3_filename = f"{poem:04d}.mp3"
+    path = f'{URI_MP3_FOLDER}/{mp3_filename}'
+
+    if not os.path.exists(path) and download:
+        download_audio(poem=poem)
+
+    return os.path.abspath(path)
 
 
 def total_poems() -> int:

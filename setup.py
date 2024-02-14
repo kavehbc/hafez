@@ -1,9 +1,9 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-with open('requirements.txt', "r") as f:
+with open('requirements.txt', "r", encoding="utf-8") as f:
     install_requires = f.read().splitlines()
 
 setuptools.setup(
@@ -12,5 +12,5 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=install_requires,
     include_package_data=True,
-    package_data={'': ['data/*.db']},
+    package_data={'': ['data/*.db', 'data/audio/do_not_delete_me.txt']},
 )
