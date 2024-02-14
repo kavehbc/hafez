@@ -9,17 +9,14 @@ URI_MP3_FOLDER = str(
         pathlib.Path(os.path.abspath(os.path.dirname(__file__))).parents[0].resolve()) + "/data/audio"
 
 
-def download_all_audio() -> int:
+def download_all_audio(force=False) -> int:
     """
     This function downloads the MP3 files and saves them locally.
     :return: total number of files saved
     """
-    counter = 0
     for poem_number in range(1, 496):
-        download_audio(poem=poem_number)
-        counter += 1
-
-    return counter
+        get_audio(poem=poem_number, download=force)
+        yield poem_number
 
 
 def download_audio(poem=1) -> int:
@@ -29,8 +26,7 @@ def download_audio(poem=1) -> int:
     :return: 1
     """
     # base_url = "https://de.loveziba.com/2019/10/"
-    # base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/aduio/"
-    base_url = "https://raw.githubusercontent.com/kavehbc/divan-hafez/master/mp3/"
+    base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/aduio/"
 
     mp3_filename = f"{poem:04d}.mp3"
     url = base_url + mp3_filename
