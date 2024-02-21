@@ -9,5 +9,8 @@ push:
 install:
 	pip install -e . --upgrade --upgrade-strategy only-if-needed
 
+install-whl:
+    pip install dist/hafez-0.2.4-py3-none-any.whl
+
 module:
 	pip install dist/hafez-0.1.2.tar.gz
