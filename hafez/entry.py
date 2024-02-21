@@ -1,4 +1,5 @@
 import random
+from typing import Tuple, Optional
 import requests
 import os
 import pathlib
@@ -19,7 +20,7 @@ def download_all_audio(force=False) -> int:
         yield poem_number
 
 
-def download_audio(poem=1) -> int:
+def download_audio(poem=1) -> tuple[Optional[int], str, str]:
     """
     This function downloads a MP3 file and saves it locally.
     :param poem: number of poem. Defaults to 1
@@ -32,13 +33,18 @@ def download_audio(poem=1) -> int:
     url = base_url + mp3_filename
 
     with requests.Session() as req:
+        status = None
         mp3_path = f'{URI_MP3_FOLDER}/{mp3_filename}'
         download = req.get(url)
         if download.status_code == 200:
-            with open(mp3_path, 'wb') as f:
-                f.write(download.content)
+            try:
+                with open(mp3_path, 'wb') as f:
+                    f.write(download.content)
+                    status = 1
+            except:
+                status = 0
 
-    return 1
+    return status, mp3_path, url
 
 
 def get_audio(poem=1, download=True) -> str:
@@ -51,10 +57,20 @@ def get_audio(poem=1, download=True) -> str:
     mp3_filename = f"{poem:04d}.mp3"
     path = f'{URI_MP3_FOLDER}/{mp3_filename}'
 
-    if not os.path.exists(path) and download:
-        download_audio(poem=poem)
+    return_value = None
 
-    return os.path.abspath(path)
+    if not os.path.exists(path) and download:
+        status, local_path, url = download_audio(poem=poem)
+        if status == 0:
+            # local saving failed
+            return_value = url
+        elif status == 1:
+            # file successfully saved locally
+            return_value = local_path
+    else:
+        return_value = os.path.abspath(path)
+
+    return return_value
 
 
 def total_poems() -> int:

@@ -1,12 +1,12 @@
 [project]
 name = "hafez"
-version = "0.2.2"
+version = "0.2.3"
 authors = [
     { name = "Kaveh Bakhtiyari", email = "kbakhtiyari@yahoo.com" },
 ]
 description = "Hafez Poems"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -16,4 +16,3 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/kavehbc/hafez"
 "Bug Tracker" = "https://github.com/kavehbc/hafez"
-

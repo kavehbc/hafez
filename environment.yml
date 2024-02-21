@@ -6,6 +6,3 @@ channels:
 dependencies:
   - python=3.9
   - pandas>=1.5.3
-  - pip
-  - pip:
-      - sqlite3
