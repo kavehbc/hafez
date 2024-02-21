@@ -10,6 +10,16 @@ URI_MP3_FOLDER = str(
         pathlib.Path(os.path.abspath(os.path.dirname(__file__))).resolve()) + "/data/audio"
 
 
+def get_mp3_url(poem):
+    # base_url = "https://de.loveziba.com/2019/10"
+    base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/audio/"
+
+    mp3_filename = f"{poem:04d}.mp3"
+    url = base_url + mp3_filename
+
+    return mp3_filename, url
+
+
 def download_all_audio(force=False) -> int:
     """
     This function downloads the MP3 files and saves them locally.
@@ -26,11 +36,7 @@ def download_audio(poem=1) -> tuple[Optional[int], str, str]:
     :param poem: number of poem. Defaults to 1
     :return: 1
     """
-    # base_url = "https://de.loveziba.com/2019/10"
-    base_url = "https://raw.githubusercontent.com/kavehbc/hafez/master/data/audio/"
-
-    mp3_filename = f"{poem:04d}.mp3"
-    url = base_url + mp3_filename
+    mp3_filename, url = get_mp3_url(poem)
 
     with requests.Session() as req:
         status = None
@@ -67,6 +73,9 @@ def get_audio(poem=1, download=True) -> str:
         elif status == 1:
             # file successfully saved locally
             return_value = local_path
+    elif not os.path.exists(path) and not download:
+        mp3_filename, url = get_mp3_url(poem)
+        return_value = url
     else:
         return_value = os.path.abspath(path)
 
