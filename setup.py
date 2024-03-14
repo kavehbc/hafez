@@ -12,5 +12,5 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=install_requires,
     include_package_data=True,
-    package_data={'': ['data/*.db', 'data/audio/do_not_delete_me.txt']},
+    package_data={'': ['data/*.db', 'data/*.json', 'data/audio/do_not_delete_me.txt']},
 )

@@ -10,7 +10,7 @@ install:
 	pip install -e . --upgrade --upgrade-strategy only-if-needed
 
 install-whl:
-    pip install dist/hafez-0.2.5-py3-none-any.whl
+    pip install dist/hafez-0.2.6-py3-none-any.whl
 
 module:
-	pip install dist/hafez-0.2.5.tar.gz
+	pip install dist/hafez-0.2.6.tar.gz
