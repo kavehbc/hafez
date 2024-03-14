@@ -1,11 +1,5 @@
-def mp3_id_formatting(id):
-    if id < 10:
-        str_id = "000" + str(id)
-    elif 10 <= id < 100:
-        str_id = "00" + str(id)
-    elif 100 <= id < 1000:
-        str_id = "0" + str(id)
-    return str_id
+def mp3_id_formatting(id: int) -> str:
+    return f"{id:04d}"
 
 
 def df_to_dict(df):
@@ -18,9 +12,11 @@ def df_to_dict(df):
             lst_verses.remove("")
 
         str_interpretation = row["Interpretation"]
+        str_alt_interpretation = row["alt_interpretation"]
         dic_poem = {"id": poem_id,
                     "poem": lst_verses,
                     "interpretation": str_interpretation,
+                    "alt_interpretation": str_alt_interpretation,
                     "mp3": f"https://de.loveziba.com/2019/10/{mp3_id_formatting(poem_id)}.mp3"}
         lst_poems.append(dic_poem)
     return lst_poems

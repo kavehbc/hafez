@@ -78,8 +78,6 @@ It returns the absolute path of the audio file related to the given  `poem`.
   - `download: boolean = True`: If `download=True`, it downloads the audio file if not existing.
 
 
-
-
 ## Poem's Data Structure
 
 ```json
