@@ -4,6 +4,7 @@ build:
 
 push:
 	python -m pip install --upgrade twine
+	python -m pip install -U packaging
 	python -m twine upload dist/*
 
 install:
