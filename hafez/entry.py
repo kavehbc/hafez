@@ -1,9 +1,9 @@
 import random
-from typing import Tuple, Optional
+from typing import Optional
 import requests
 import os
 import pathlib
-from hafez.utils.db import get_data, search_data
+from hafez.utils.db import filter_columns, get_data, search_data
 from hafez.utils.formating import df_to_dict
 
 URI_MP3_FOLDER = str(
@@ -97,6 +97,7 @@ def get_poem(poem_id) -> dict:
     :return: a dictionary containing the poem verses and its interpretation
     """
     df = get_data(poem_id)
+    df = filter_columns(df)
     lst_poem = df_to_dict(df)
 
     return lst_poem[0]
@@ -109,6 +110,7 @@ def search(query) -> list:
     :return: a list of dictionary containing all the poems which have the queried terms
     """
     df = search_data(query)
+    df = filter_columns(df)
     lst_poem = df_to_dict(df)
 
     return lst_poem

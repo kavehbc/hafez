@@ -2,6 +2,7 @@
 IF %1.==. GOTO commad_missing
 IF %1 == install GOTO install
 IF %1 == build GOTO build
+IF %1 == push GOTO push
 	ECHO Undefined command
 GOTO End1
 
@@ -19,5 +20,10 @@ GOTO End1
   python -m pip install --upgrade build
   python -m build
   GOTO End1
+
+:push
+	python -m pip install --upgrade twine
+	python -m pip install -U packaging
+	python -m twine upload dist/*
 
 :End1

@@ -3,22 +3,7 @@ def mp3_id_formatting(id: int) -> str:
 
 
 def df_to_dict(df):
-    lst_poems = []
-    for index, row in df.iterrows():
-        poem_id = row["id"]
-        str_poem = row["Poem"]
-        lst_verses = str_poem.split("\\r\\n")
-        if "" in lst_verses:
-            lst_verses.remove("")
-
-        str_interpretation = row["Interpretation"]
-        str_alt_interpretation = row["alt_interpretation"]
-        dic_poem = {"id": poem_id,
-                    "poem": lst_verses,
-                    "interpretation": str_interpretation,
-                    "alt_interpretation": str_alt_interpretation,
-                    "mp3": f"https://de.loveziba.com/2019/10/{mp3_id_formatting(poem_id)}.mp3"}
-        lst_poems.append(dic_poem)
+    lst_poems = df.to_dict(orient='records')
     return lst_poems
 
 
