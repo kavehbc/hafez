@@ -103,7 +103,7 @@ def get_poem(poem_id) -> dict:
     return lst_poem[0]
 
 
-def search(query) -> list:
+def search(query: str=None) -> list:
     """
     It searches through the verses of Divan and once a record found, it returns the whole poem.
     :param query: the string term to query into Divan

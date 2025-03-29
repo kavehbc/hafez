@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import pathlib
 import os
 import json
@@ -28,14 +29,22 @@ def get_data(id: int = None):
 
 
 def search_data(query: str = None):
+    query = query.strip()
 
     _, df = get_connection()
     df['poem_string'] = [','.join(map(str, l)) for l in df['poem']]
 
     if query is not None and len(query) > 0:
         lst_query = query.split(" ")
-        df = df[df["poem_string"].str.contains('|'.join(lst_query))]
 
+        # AND Logic
+        contains = [df["poem_string"].str.contains(i) for i in lst_query]
+        df = df[np.all(contains, axis=0)]
+
+        # OR Logic
+        # df = df[df["poem_string"].str.contains('|'.join(lst_query))]
+
+    df.drop(columns=["poem_string"], inplace=True, axis=1)
     return df
 
 

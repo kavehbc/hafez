@@ -84,6 +84,7 @@ It returns the absolute path of the audio file related to the given  `poem`.
 {"id": 1,
 "poem": [],
 "interpretation": "",
+"alt_interpretation": "",
 "mp3": "https://..."}
 ```
 
