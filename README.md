@@ -50,11 +50,12 @@ It returns the poem in a dictionary format (see Poem Data Structure)
 It returns a random poem in a dictionary format (see Poem Data Structure)
 
 
-- `hafez.search(qeury: str)` -> `list`
+- `hafez.search(qeury: str, exact_match: bool = False)` -> `list`
 <br />
 It returns a list of poems in a dictionary format (see Poem Data Structure)
   
   - `query: str`: It is a string to search within the verses of the Divan Hafez
+  - `exact_match: bool': if True, it will search for exact match of the query
 
 
 - `hafez.download_all_audio(force: boolean = False)` -> `int`

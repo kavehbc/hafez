@@ -28,14 +28,21 @@ def get_data(id: int = None):
     return df
 
 
-def search_data(query: str = None):
+def search_data(query: str = None, exact_match: bool = False) -> pd.DataFrame:
     query = query.strip()
 
     _, df = get_connection()
     df['poem_string'] = [','.join(map(str, l)) for l in df['poem']]
 
     if query is not None and len(query) > 0:
-        lst_query = query.split(" ")
+        if exact_match:
+            lst_query = [query]
+        else:
+            # Split the query into words for searching
+            if " " in query:
+                lst_query = query.split(" ")
+            else:
+                lst_query = [query]
 
         # AND Logic
         contains = [df["poem_string"].str.contains(i) for i in lst_query]

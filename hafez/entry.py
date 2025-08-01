@@ -103,13 +103,14 @@ def get_poem(poem_id) -> dict:
     return lst_poem[0]
 
 
-def search(query: str=None) -> list:
+def search(query: str=None, exact_match: bool = False) -> list:
     """
     It searches through the verses of Divan and once a record found, it returns the whole poem.
     :param query: the string term to query into Divan
+    :param exact_match: if True, it will search for exact match of the query
     :return: a list of dictionary containing all the poems which have the queried terms
     """
-    df = search_data(query)
+    df = search_data(query, exact_match=exact_match)
     df = filter_columns(df)
     lst_poem = df_to_dict(df)
 
