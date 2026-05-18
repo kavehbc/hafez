@@ -51,7 +51,7 @@ def search_data(query: str = None, exact_match: bool = False) -> pd.DataFrame:
         # OR Logic
         # df = df[df["poem_string"].str.contains('|'.join(lst_query))]
 
-    df.drop(columns=["poem_string"], inplace=True, axis=1)
+    df.drop(columns=["poem_string"], inplace=True)
     return df
 
 
